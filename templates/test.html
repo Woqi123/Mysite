@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<h1>hello world</h1>
+数字: {{ num }}
+<br>
+<br>
+字符串: {{ str }}
+<br>
+<br>
+列表: {{ name_list }}
+<br>
+列表索引0号元素: {{ name_list.0 }}
+<br>
+<br>
+字典： {{ dic }}
+<br>
+字典根据key值获取value： {{ dic.name }} {{ dic.age }}
+<br>
+字典获取所有key： {{ dic.keys }} ## keys后面没有小括号
+<br>
+<br>
+元组: {{ tup }}
+<br>
+<br>
+集合: {{ name_set }}
+<br>
+<br>
+类: {{ person }}
+<br>
+对象的属性: {{ person.name }} {{ person.age }}
+<br>
+对象的方法: {{ person.talk }} ## 不能调用那些需要传参的方法，且方法调用后面没有小括号
+<br><br>
+
+
+<hr>
+<h3>过滤器</h3>
+<h5>default过滤器</h5>
+没有传递gf这个变量: {{ gf }}
+<br>
+{{ gf|default:'我是GF' }}<br>
+{{ blank|default:'我是默认值' }}<br>
+<h5>filesizeformat过滤器</h5>
+文件大小：{{ filesize }}<br>
+格式化后：{{ filesize|filesizeformat }}
+<h5>add过滤器</h5>
+数字相加：{{ add_test|add:2 }} ; {{ add_test|add:-2 }} ;<br>
+字符串拼接： {{ "test"|add:"test" }}<br>
+列表拼接：{{ name_list|add:name_list }}<br>
+元组拼接：{{ tup|add:tup }}<br>
+<h5>lower/upper过滤器</h5>
+字符串转大写：{{ str|lower }}<br>
+字符串转大写转小写：{{ str|lower|upper }}<br>
+<h5>length过滤器</h5>
+字符串长度：{{ str|length }}<br>
+字符串拼接后计算长度：{{ str|add:str|length }}
+列表长度： {{ name_list|length }}<br>
+元祖长度： {{ tup|length }}<br>
+字典长度： {{ dic|length }}<br>
+<h5>slice过滤器</h5>
+字符串切片：{{ str|slice:'0:10' }}<br>
+列表切片，同时指定步长： {{ name_list|slice:'::-1' }}<br>
+<h5>join过滤器</h5>
+列表拼接：{{ name_list|join:"&&" }}<br>
+<h5>truncatechars/truncatewords过滤器</h5>
+truncatechars按照字符截取： {{ str|truncatechars:5 }}<br>
+truncatewords按照单词截取： {{ str|truncatewords:5 }}<br>
+
+<hr>
+<h5>自定义过滤器</h5>
+{% load mytags %}
+自定义过滤器： {{ str|add_arg:"test" }}
+
+<hr>
+<h5>自定义函数</h5>
+{% load mytags %}
+{% str_join "1" "2" "abc" k1="er" k2="ttt" %}
+</body>
+</html>

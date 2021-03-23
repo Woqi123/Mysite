@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+{% block pub_active %}
+    <li><a href="/books/publisher_list">出版社列表 <span class="sr-only">(current)</span></a></li>
+    <li><a href="/books/book_list">书籍列表</a></li>
+    <li class="active"><a href="/books/author_list">作者列表</a></li>
+    <li><a href="#">Export</a></li>
+{% endblock %}
+
+{% block main %}
+    <div>
+        <h2 class="sub-header">作者列表</h2>
+        <a href="/books/add_author/">新增</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>作者</th>
+                <th>代表作</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in all_authors %}
+                <tr>
+                    <td>{{ author.authorid }}</td>
+                    <td>{{ author.authorname }}</td>
+                    <td>
+                        {% for book in author.book.all %}
+                            《 {{ book.bookname }} 》
+                        {% endfor %}
+
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm"
+                           href="/books/update_author/?authorid={{ author.authorid }}">更新</a>
+                        <button url="/books/del_author/?authorid={{ author.authorid }}" class="btn btn-danger btn-sm">
+                            删除
+                        </button>
+                        {#<a class="btn btn-danger btn-sm"#}
+                        {#href="/books/del_author/?authorid={{ author.authorid }}">删除</a>#}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% load mytags %}
+
+    {% pagination authors_length %}
+{% endblock %}
+
+

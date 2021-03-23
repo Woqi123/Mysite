@@ -1,0 +1,69 @@
+{% extends 'publisher_list.html' %}
+
+{% block main %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">新增出版社</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" method="post">
+                <div class="form-group {% if error %}has-error{% endif %}">
+                    <label for="pubname" class="col-sm-2 control-label">出版社名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pubname" class="form-control" id="pubname" placeholder="Pubnname">
+                        <span class="help-block">{{ error }}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pubaddr" class="col-sm-2 control-label">出版社地址</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pubaddr" class="form-control" id="pubaddr" placeholder="Pubaddr">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pubpost" class="col-sm-2 control-label">出版社邮编</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pubpost" class="form-control" id="pubpost" placeholder="Pubpost">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="website" class="col-sm-2 control-label">出版社网址</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="website" class="form-control" id="website" placeholder="Website">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact" class="col-sm-2 control-label">联系人</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contele" class="col-sm-2 control-label">联系方式</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="contele" class="form-control" id="contele" placeholder="Contele">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="e_mail" class="col-sm-2 control-label">联系人E-mail</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="e_mail" class="form-control" id="e_mail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="pubinfo" class="col-sm-2 control-label">备注信息</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="pubinfo" class="form-control" id="pubinfo" placeholder="Pubinfo">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

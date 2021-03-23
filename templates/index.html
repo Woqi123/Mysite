@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+
+{% include 'nav.html' %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                {% block pub_active %}
+                    <li><a href="/books/publisher_list">出版社列表 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/books/book_list">书籍列表</a></li>
+                    <li><a href="/books/author_list">作者列表</a></li>
+                    <li><a href="#">Export</a></li>
+                {% endblock %}
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block main %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+{#    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>#}
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    $('.btn-danger').click(function () {
+        swal({
+            title: "是否确认删除?",
+            text: "一旦删除，您的文件将无法恢复",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    var _this = $(this);
+                    $.ajax({
+                            url: $(this).attr('url'),
+                            type: 'get',
+                            success: function (data) {
+                                if (data.status === 200) {
+                                    swal("您的文件已删除", {
+                                        icon: "success",
+                                    });
+                                    // 后端数据删除成功，删除前端缓存数据
+                                    _this.parent().parent().remove();
+                                } else {
+                                    swal("删除失败", {
+                                        icon: "error"
+                                    });
+                                }
+                            }
+                        }
+                    );
+
+                } else {
+                    swal("您已取消删除");
+                }
+            });
+
+    })
+</script>
+
+</body>
+</html>
