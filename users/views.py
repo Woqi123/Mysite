@@ -6,6 +6,7 @@ from .models import User
 
 from django.conf import global_settings
 
+
 # print(globals())
 
 
@@ -26,14 +27,16 @@ def login(request):
                 return_url = reverse('index')
 
             ret = redirect(return_url)
-            ret.set_cookie("is_login", '1') #设置Cookie
+            ret.set_cookie("is_login", '1')  # 设置Cookie
             # request.session['is_login'] = 1
             return ret
     return render(request, 'login.html')
 
+
 class Test(forms.Form):
     pass
-def test():
 
+
+def test():
     test = Test()
     test.is_valid()
